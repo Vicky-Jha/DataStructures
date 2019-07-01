@@ -68,7 +68,7 @@ void topp()
     }
     else
     {
-        printf("%d",top -> data);
+        printf("%d\n",top -> data);
     }
 }
 int size()

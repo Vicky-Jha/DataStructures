@@ -1,12 +1,44 @@
+////
+////  main.c
+////  test3
+////
+////  Created by test on 09/07/19.
+////  Copyright © 2019 test. All rights reserved.
+////
+//
+//#include <iostream>
+//using namespace std;
+//bool isPowerOfTwo(int x)
+//{
+//    if(x == 0)
+//        return false;
+//    else
+//    {
+//        while(x % 2 == 0) x /= 2;
+//        return (x==1);
+//        /*
+//         if(x==1)
+//         return true;
+//         else
+//         return false;
+//         */
+//    }
+//}
+//int main()
+//{
+//    int x;
+//    scanf("%d",&x);
+//    cout<<isPowerOfTwo(x)<<endl;
+//    return 0;
+//}
 
 #include <iostream>
 using namespace std;
 int MaxSize = 0;
 //int newMaxSize = 0;
 int *a = new(nothrow) int[MaxSize];
-struct stack {
-private:int top=-1;
-public:void ArrayMaxSize(){
+int top=-1;
+void ArrayMaxSize(){
     cout<<"Enter MaxSize:"<<endl;
     scanf("%d",&MaxSize);
     if (!a)
@@ -15,13 +47,13 @@ public:void ArrayMaxSize(){
     }
     delete [] a;
 }
-public:void IsEmptyStack(){
+void IsEmptyStack(){
     if (top==-1)
         cout<<"Stack is empty"<<"\n";
     else
         cout<<"Stack is not Empty"<<endl;
 }
-public:void push (){
+void push (){
     if(MaxSize == 0) {
         cout<<"Set max size of array first"<<endl;
     }
@@ -49,7 +81,7 @@ public:void push (){
         }
     }
 }
-public:void IsFullStack(){
+void IsFullStack(){
     if(MaxSize != 0 && MaxSize==top+1){
         cout<<"Stack is full"<<endl;
     }
@@ -59,7 +91,7 @@ public:void IsFullStack(){
     
 }
     
-public:void pop(){
+void pop(){
     if(top==-1){
         
         printf("Stack is EMPTY , 1st Enter Data then Pop\n");
@@ -71,18 +103,18 @@ public:void pop(){
     }
     
 }
-public:void Topp(){
+void Topp(){
     
     if(top!=-1)
         printf("Last Inserted Element in the stack is : %d\n",a[top]);
     else
         printf("NULL\n");
 }
-public:void size(){
+void size(){
     printf("MaxSize of the Stack is: %d\n",MaxSize);
     printf("Current Size of the Stack is: %d\n",top+1);
 }
-public:void StackContent()
+void StackContent()
     {
         if (top==-1)
             cout<<"Stack is empty"<<"\n";
@@ -110,7 +142,7 @@ public:void StackContent()
      cerr<<"Remenber the elements entered before aren't deleted yet"<<endl;
      
      }*/
-public:void SetNewMaxSize()
+void SetNewMaxSize()
     {
         cout<<"Enter New MaxSize:"<<endl;
         scanf("%d",&MaxSize);
@@ -122,33 +154,30 @@ public:void SetNewMaxSize()
         printf("New MaxSize %d is alloted Succefully\n",MaxSize);
         cerr<<"Remenber the elements entered before aren't deleted yet"<<endl;
     }
-    
-};
 
 int main() {
-    struct stack s1;
     int option;
     while(1){
         printf("Enter 1 for IsEmptyStack\nEnter 2 for push\nEnter 3 for IsFullStack\nEnter 4 for pop\nEnter 5 for top\nEnter 6 for size\nEnter 7 for elements List\nEnter 8 to Set MAxSize\nEnter 9 to give New MaxSize\nEnter 10 to quit\n");
         scanf("%d",&option);
         switch (option){
-            case 1: s1.IsEmptyStack();
+            case 1: IsEmptyStack();
                 break;
-            case 2: s1.push();
+            case 2: push();
                 break;
-            case 3:s1.IsFullStack();
+            case 3:IsFullStack();
                 break;
-            case 4:s1.pop();
+            case 4:pop();
                 break;
-            case 5:s1.Topp();
+            case 5:Topp();
                 break;
-            case 6:s1.size();
+            case 6:size();
                 break;
-            case 7:s1.StackContent();
+            case 7:StackContent();
                 break;
-            case 8:s1.ArrayMaxSize();
+            case 8:ArrayMaxSize();
                 break;
-            case 9:s1.SetNewMaxSize();
+            case 9:SetNewMaxSize();
                 break;
             case 10:exit(1);
                 break;

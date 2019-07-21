@@ -47,12 +47,14 @@ int main() {
             case 7:exit(1);
                 break;
             default:printf("Enter a valid option\n");
+                break;
         }
     }
     return 0;
 }
 
-void push (){
+void push ()
+{
     struct node *temp = (struct node*)malloc(sizeof(struct node));
     printf("Enter data of the node:\n");
     scanf("%d",&temp -> data);

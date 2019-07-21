@@ -1,143 +1,177 @@
+//if (root == NULL)
+//{
+//    root = temp ;
+//}
+//else
+//{
+//    struct node *store;
+//    while(p)
+//    {
+//        store = p;
+//        if (temp -> data > p -> data)
+//        {
+//            p = p -> right;
+//        }
+//        else
+//        {
+//            p = p -> left;
+//        }
+//    }
+//    if (temp -> data > store -> data)
+//    {
+//        store -> right = temp;
+//    }
+//    else
+//    {
+//        store -> left = temp;
+//    }
+//}
+//}
+//
+//#include <stdio.h>
+//void get(int n)
+//{
+//    if(n<1) return;
+//    get(n-1);
+//    get(n-3);
+//    printf("%d ",n);
+//}
+//
+//int main()
+//{
+//    get(6);
+//    return 0;
+//}
+//#include<stdio.h>
+//int a[100];
+//int array(int i)
+//{
+//    if(i = 9)
+//    {
+//        return a[9];
+//    }
+//    else
+//    {
+//        return a[i];
+//    }
+//}
+//int main()
+//{
+//
+//    for (int i=0 ; i<10 ; i++)
+//    {
+//        scanf("%d",&a[i]);
+//    }
+//    printf("Array elements are:\n");
+//    for (int i = 0; i<10 ; i++)
+//    {
+//        printf("%d",array(i));
+//    }
+//        return 0;
+//}
+//#include<stdio.h>
+//void PrintArray(int arr[],int n)
+//{
+//    if(n<0)
+//        return ;
+//    PrintArray(arr,n-1);
+//    printf("%d ",arr[n]);
+//}
+//int main()
+//{
+//    int arr[6],i;
+//    printf("Enter array elements:\n");
+//    for (i=0;i<6;i++)
+//    {
+//        scanf("%d",&arr[i]);
+//    }
+//    printf("Array elements are:\n");
+//    PrintArray(arr,5);
+//    return 0;
+//}
+#include <math.h>
 #include <stdio.h>
-int main()
-{
-    int i,*even,*p , a=10;
-    for (i=0;i<=5;i++)
-    {
-        scanf("%d",&even[i]);
-    }
-    for (i=0;i<=5;i++)
-    {
-        printf("%d\n",even[i]);
-    }
+#include <string.h>
+#include <stdlib.h>
+#include <assert.h>
+#include <limits.h>
+#include <stdbool.h>
 
+int main(){
+    int t,a[1000000];
+    long temp;
+    scanf("%d",&t);
+    while(t--){
+        long int n;
+        int j=0,count=0;
+        scanf("%ld",&n);
+        if (n <= 1)
+        {
+            printf("%ld\n",n);
+        }
+        else
+        {
+            for (int i = 1;i<n;i++)
+            {
+                if (n % i == 0)
+                {
+                    a[j]=i;
+                    j++;
+                    count++;
+                }
+            }
+            temp = a[0];
+            int k=0;
+            while (j>=0)
+            {
+                if (temp < a[k+1])
+                {
+                    temp = a[k+1];
+                    k++;
+                }
+                j--;
+            }
+            if(count == 1)
+                printf("%ld",n);
+            else
+                printf("%ld",temp);
+            printf("\n");
+        }
+    }
     return 0;
 }
-#include <iostream>
-#include<string>
-#include<unordered_set>
-#include<iomanip>
 
-using namespace std;
-
-
-struct Stack {
-private: int maxSize = -1;
-private: int *array;
-private: int lastElementLocation = -1;
-    
-public: bool setMaxSize(int size) {
-    if(maxSize == -1) {
-        maxSize = size;
-        return true;
-    }
-    
-    return false;
-}
-    
-public: bool isEmpty() {
-    if(lastElementLocation == -1) {
-        return true;
-    }
-    return false;
-}
-    
-public: bool push(int element) {
-    if(maxSize == -1) {
-        cout<<"pls set max size first"<<endl;
-        return false;
-    }
-    
-    if(array==NULL) {
-        array = (int*)malloc(maxSize * sizeof(int));
-    }
-    
-    if(!isFull()) {
-        lastElementLocation++;
-        array[lastElementLocation] = element;
-        return true;
-    }
-    
-    printf("stack full");
-    return false;
-}
-    
-public: int top() {
-    if(lastElementLocation != -1) {
-        return array[lastElementLocation];
-    }
-    printf("stack empty");
-    return -1;
-}
-    
-public: int pop() {
-    if(lastElementLocation != -1) {
-        return array[lastElementLocation--];
-    }
-    printf("stack empty");
-    return -1;
-}
-    
-public: bool isFull() {
-    if(lastElementLocation == maxSize) {
-        return true;
-    }
-    return false;
-}
-    
-public: void printStackContent() {
-    for(int i = 0 ; i < lastElementLocation + 1; i++) {
-        cout<<array[i]<<" ";
-    }
-    cout<<endl;
-}
-};
-
-
-
-int main() {
-    
-    struct Stack st;
-    
-    while(1) {
-        printf("Enter 1 for push\nEnter 2 for pop\nEnter 3 for isEmpty\nEnter 4 for isFullCheck\nEnter 5 for top\nEnter 6 to change max size of stack\n");
-        int option;
-        scanf("%d",&option);
-        switch (option) {
-            case 1:
-                int element;
-                printf("Enter element\n");
-                scanf("%d",&element);
-                st.push(element);
-                break;
-                
-            case 2:
-                cout<<st.pop()<<endl;
-                break;
-                
-            case 3:
-                cout<<st.isEmpty()<<endl;
-                break;
-                
-            case 4:
-                cout<<st.isFull()<<endl;
-                break;
-                
-            case 5:
-                cout<<st.top()<<endl;
-                break;
-                
-                //            case 6:
-                //                int size;
-                //                cout<<"Enter new max size"<<endl;
-                //                cin>>size;
-                //                st.changeStackMaxSize(size);
-                
-            default:
-                st.printStackContent();
-                break;
-        }
-        
-    }
-    
-}
+//
+//
+//#include <math.h>
+//#include <stdio.h>
+//#include <string.h>
+//#include <stdlib.h>
+//#include <assert.h>
+//#include <limits.h>
+//#include <stdbool.h>
+//int main() {
+//    long int N,max=2,T,factor;
+//    scanf("%ld",&T);
+//    while(T--) {
+//        scanf("%ld",&N);
+//
+//        while(N%2==0)
+//            N = N/2;
+//
+//        for ( factor = 3; factor <=N; factor+=2)
+//        {
+//            if(factor*2 > N)
+//                factor = N;
+//
+//            while(N%factor == 0)
+//            {
+//                max = factor;
+//                N = N/factor;
+//            }
+//        }
+//        printf("%ld\n",max);
+//    }
+//    return 0;
+//
+//}

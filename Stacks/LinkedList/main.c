@@ -22,6 +22,7 @@ void nthNodeFromEndOrBeginning(void);
 void SortListInDecending(void);
 void reverseList(void);
 void deleteByData(void);
+void sortAccending();
 
 int main()
 {
@@ -29,7 +30,7 @@ int main()
     while(1)
     {
         printf("Enter Your Choice:\n");
-        printf("1 to Insert node at begining\n2 to insert at end\n3 to enter a node in the middle\n4 to count number of nodes in the list\n5 to display the nodes in the list\n6 to delete node by location \n7 to delete full list\n8 To find nth node from the beginning or end of the linked list\n9 To Check whether the given linked list is either NULL-Terminated or Ends in Cycle (Circular Linked list) also print starting node and length of Loop if Circular Linked List\n10 to sort the Nodes of List in Decending Order\n11 to Reverse Linked List\n12 Delete data\n13 exit\n");
+        printf("1 to Insert node at begining\n2 to insert at end\n3 to enter a node in the middle\n4 to count number of nodes in the list\n5 to display the nodes in the list\n6 to delete node by location \n7 to delete full list\n8 To find nth node from the beginning or end of the linked list\n9 To Check whether the given linked list is either NULL-Terminated or Ends in Cycle (Circular Linked list) also print starting node and length of Loop if Circular Linked List\n10 to sort the Nodes of List in Decending Order\n11 to Reverse Linked List\n12 Delete data\n13 Sort in Accending\n14 Exit\n");
         scanf("%d",&ch);
         switch(ch)
         {
@@ -58,8 +59,9 @@ int main()
                 break;
             case 12:deleteByData();
                 break;
-            case 13:exit(1);
+            case 13:sortAccending();
                 break;
+            case 14:exit(1);
             default:printf("Invalid Option, try again:\n");
                 break;
         }
@@ -230,25 +232,25 @@ void deleteFullList()
     }
 }
 /*void NthNodeFromEnd()
-{
-    struct node *temp = head;
-    int n,i=1;
-    printf("Enter location of node from the end of a linked list\n");
-    scanf("%d",&n);
-    if (n>lengthOfNode())
-    {
-        printf("Current length of List is = %d nodes\nTry again\n",lengthOfNode());
-    }
-    else
-    {
-        while (i!=(lengthOfNode()-n+1))
-        {
-            temp = temp -> next;
-            i++;
-        }
-        printf("nth node from the end of a linked list is = %d\n",temp -> data);
-    }
-}*/
+ {
+ struct node *temp = head;
+ int n,i=1;
+ printf("Enter location of node from the end of a linked list\n");
+ scanf("%d",&n);
+ if (n>lengthOfNode())
+ {
+ printf("Current length of List is = %d nodes\nTry again\n",lengthOfNode());
+ }
+ else
+ {
+ while (i!=(lengthOfNode()-n+1))
+ {
+ temp = temp -> next;
+ i++;
+ }
+ printf("nth node from the end of a linked list is = %d\n",temp -> data);
+ }
+ }*/
 int NullTerminatedOrCircular()
 {
     int LoopExist = 0, count =1;
@@ -398,37 +400,46 @@ void problem54()
     
     while (slow && fast && fast -> next)
     {
-
+        
     }
 }
 void reverseList()
 {
-    struct node *p, *c;
-    if(head == NULL)
-    {
-        printf("List is Empty:\n");
+    struct node *temp = head;
+    int arr[lengthOfNode()];
+    for(int i = 0 ; i<lengthOfNode() ; i++){
+        arr[i] = temp -> data;
+        temp = temp -> next;
     }
-    else
-    {
-        p = head;
-        c = head->next;
-        head = head -> next;
-        
-        p -> next = NULL;
-        
-        while(head != NULL)
-        {
-            head = head->next;
-            c -> next = p;
-            
-            p = c;
-            c = head;
-        }
-        
-        head = p;
-        
-        printf("List Reversed Successfully\n");
+    for(int i = lengthOfNode() - 1 ; i >= 0 ; i--){
+        printf("%d ",arr[i]);
     }
+    //     struct node *p, *c;
+    //     if(head == NULL)
+    //     {
+    //         printf("List is Empty:\n");
+    //     }
+    //     else
+    //     {
+    //         p = head;
+    //         c = head->next;
+    //         head = head -> next;
+    
+    //         p -> next = NULL;
+    
+    //         while(head != NULL)
+    //         {
+    //             head = head->next;
+    //             c -> next = p;
+    
+    //             p = c;
+    //             c = head;
+    //         }
+    
+    //         head = p;
+    
+    //         printf("List Reversed Successfully\n");
+    //     }
 }
 void deleteByData()
 {
@@ -443,17 +454,35 @@ void deleteByData()
     }
     else
     {
-    while (traverse && traverse -> data != d)
-    {
-        traverse = traverse -> next;
-        count++;
+        while (traverse && traverse -> data != d)
+        {
+            traverse = traverse -> next;
+            count++;
+        }
+        while (count > 0)
+        {
+            temp = temp -> next;
+            count -= 1;
+        }
+        temp -> next = traverse -> next;
+        free(traverse);
     }
-    while (count > 0)
-    {
-        temp = temp -> next;
-        count -= 1;
-    }
-    temp -> next = traverse -> next;
-    free(traverse);
+}
+void sortAccending()
+{
+    struct node *temp = head,*temp1;
+    int store;
+    
+    for(int i=0 ; i<lengthOfNode()-1 ; i++){
+        temp = head;
+        for(int j=0 ; j<lengthOfNode()-i-1 ; j++){
+            temp1 = temp -> next;
+            if(temp -> data > temp1 -> data){
+                store = temp -> data;
+                temp -> data = temp1 -> data;
+                temp1 -> data = store;
+            }
+            temp = temp -> next;
+        }
     }
 }
